@@ -1,11 +1,11 @@
 
 import './App';
+import Modal from "./components/Modal/Modal";
 
 function App() {
-
   return (
     <>
-
+      <Modal />
     </>
   );
 }
