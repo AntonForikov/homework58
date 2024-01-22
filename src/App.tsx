@@ -1,4 +1,3 @@
-
 import './App';
 import Modal from "./components/Modal/Modal";
 import {useState} from "react";
@@ -7,17 +6,29 @@ import Alert from "./components/Alert/Alert";
 
 function App() {
     const [showModal, setShowModal] = useState(false);
+    // const [showAlert, setShowAlert] = useState(true);
 
+    let show = true;
+
+    const showAlert = () => {
+        console.log(`Show before: ${show}`);
+        show = false;
+        console.log(`Show after: ${show}`);
+    };
     const cancel = () => setShowModal(false);
 
     const buttonConf = [
-        {type: 'primary', label: 'Continue', onClick: () => alert('clicked continue')},
+        {type: 'primary', label: 'Continue', onClick: () => alert('Clicked continue')},
         {type: 'danger', label: 'Close', onClick: cancel}
     ];
 
     return (
     <>
-        <button onClick={() => setShowModal(true)}>Show modal</button>
+        <button
+            className='btn btn-primary d-block mx-auto my-1'
+            onClick={() => setShowModal(true)}
+        >Show modal
+        </button>
       <Modal
           show={showModal}
           title='Modal header'
@@ -30,8 +41,12 @@ function App() {
             <Button conf={buttonConf} />
           </div>
       </Modal>
-        <Alert type='warning'>This is a success type alert</Alert>
-        <Alert type='success' onDismiss={true}>This is a success type alert</Alert>
+        <Alert type='warning' show={show} onDismiss={() => showAlert()} clickDismissible>This is a warning type alert</Alert>
+        <Alert type='success' show={show} onDismiss={() => showAlert()} >This is a success type alert</Alert>
+        {/*<Alert type='warning' show={showAlert} onDismiss={() => setShowAlert(false)}>This is a warning type alert</Alert>*/}
+        {/*<Alert type='success' show={showAlert} onDismiss={() => setShowAlert(false)} clickDismissible>This is a success type alert</Alert>*/}
+        {/*<Alert type='warning' show onDismiss={() => console.log('warning')}>This is a warning type alert</Alert>*/}
+        {/*<Alert type='success' show onDismiss={() => console.log('success')} clickDismissible>This is a success type alert</Alert>*/}
     </>
   );
 }

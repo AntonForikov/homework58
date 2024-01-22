@@ -2,36 +2,38 @@ import React from 'react';
 
 interface Props extends React.PropsWithChildren {
     type: string;
-    onDismiss?: React.MouseEventHandler;
-    clickDismissible: boolean;
+    onDismiss: React.MouseEventHandler;
+    show: boolean;
+    clickDismissible?: boolean;
 }
 
-const Alert: React.FC<Props> = ({type, onDismiss, children}) => {
-    if (onDismiss) {
+const Alert: React.FC<Props> = ({type, onDismiss, show, clickDismissible, children}) => {
+    if (clickDismissible) {
         return (
             <div
-                className={`alert alert-${type} alert-dismissible fade show d-flex justify-content-between align-items-center`}
-                role="alert">
+                className={`alert alert-${type} alert-dismissible fade show ${show ? 'd-block' : 'd-none'}`}
+            >
                 <div>
                     {children}
-                 </div>
+                </div>
                 <div>
                     <button
                         type="button"
-                        className="close btn"
+                        className="btn-close"
                         onClick={onDismiss}
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    />
                 </div>
             </div>
         );
     } else {
         return (
             <div
-                className={`alert alert-${type} alert-dismissible fade show d-flex justify-content-between align-items-center`}
-                role="alert">
+                className={`alert alert-${type} alert-dismissible fade show ${show ? 'd-block' : 'd-none'}`}
+                onClick={onDismiss}
+            >
+                <div>
                     {children}
+                </div>
             </div>
         );
     }
