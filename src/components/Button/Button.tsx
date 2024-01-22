@@ -10,11 +10,6 @@ interface Conf {
     conf: Props[]
 }
 const Button: React.FC<Conf> = ({conf}) => {
-    // const buttons = (<>
-    //     {conf.map(button => {
-    //         <button className={`btn btn-${button.type}`} onClick={button.onClick}>{button.label}</button>;
-    //     })}
-    // </>);
 
     const buttons = (<>
         {conf.map(button => {

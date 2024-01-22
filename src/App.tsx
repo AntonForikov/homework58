@@ -3,6 +3,7 @@ import './App';
 import Modal from "./components/Modal/Modal";
 import {useState} from "react";
 import Button from "./components/Button/Button";
+import Alert from "./components/Alert/Alert";
 
 function App() {
     const [showModal, setShowModal] = useState(false);
@@ -29,6 +30,8 @@ function App() {
             <Button conf={buttonConf} />
           </div>
       </Modal>
+        <Alert type='warning'>This is a success type alert</Alert>
+        <Alert type='success' onDismiss={true}>This is a success type alert</Alert>
     </>
   );
 }
